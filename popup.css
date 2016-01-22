@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 700px;
+}
+
+#rules {
+    margin: 10px;
+}
+
+label {
+    display: block;
+    line-height: 32px;
+}
+
+input[name=pattern] {
+    display: block;
+    line-height: 20px;
+    width: 100%;
+}
+
+select.runAt {
+}
+
+div.code {
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+.actions {
+    margin-top: 10px;
+}
+
+button {
+    font-weight: bold;
+}
+
+button[name=save] {
+    float: right;
+    color: green;
+}
+
+button[name=delete] {
+    color: red;
+}
+
+.CodeMirror {
+    height: 200px;
+}
+.codeWrapper {
+    position: relative;
+}
+
+.tools {
+    position: absolute;
+    top: 0;
+    right: 0;
+}

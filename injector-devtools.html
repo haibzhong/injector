@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <script src="jquery-2.1.4.min.js"></script>
+
+    <link rel="stylesheet" href="editor.css">
+    <script src="editor.js"></script>
+    <script src="marked.js"></script>
+
+    <link href="popup.css" rel="stylesheet" type="text/css">
+</head>
+
+<body >
+        <input type="text" name="pattern" />
+    <script type="text/template" id="tpl">
+        <div class="rule">
+            <div>
+                <label>url regexp:</label>
+                <input type="text" name="pattern" />
+            </div>
+            <div>
+                <label>scripts: </label>
+                <div class="codeWrapper">
+                    <div class="code"></div>
+                    <div class="tools">
+                        <button class="prettyPrint">pretty print</button>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <button name="delete">remove rule</button>
+                <button name="save">save and run</button>
+            </div>
+        </div>
+    </script>
+    <div id="rules">
+        <div class="actions">
+            <button name="new" onclick="alert(1);">add new rule</button>
+        </div>
+    </div>
+
+    <script src="ace.js"></script>
+    <script src="mode-javascript.js"></script>
+    <script src="worker-javascript.js"></script>
+    <script src="popup.js"></script>
+</body>
+
+</html>
