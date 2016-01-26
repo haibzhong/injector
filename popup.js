@@ -47,6 +47,10 @@ function deleteRule() {
         delete rules[lastPattern];
         chrome.storage.local.set({
             'rules': rules
+        }, function() {
+            chrome.runtime.sendMessage({
+                method: "updateRules"
+            });
         });
         $el.find('div.code')[0].editor = null;
         $el.remove();
@@ -64,7 +68,13 @@ function initPage() {
 
             for (var key in rules) {
                 if (rules.hasOwnProperty(key)) {
-                    var reg = new RegExp(key);
+                    try {
+                        var reg = new RegExp(key);
+                    } catch (e) {
+                        console.log('injector: ', e);
+                        continue;
+                    }
+
                     if (reg.test(url)) {
                         var rule = rules[key];
                         if (typeof rule === 'string') {
@@ -151,8 +161,7 @@ function initPage() {
         var val = $(this).val();
         if (val === 'window') {
             $(this).parents('div.rule').find('select.runAt').parent().show();
-        }
-        else {
+        } else {
             $(this).parents('div.rule').find('select.runAt').parent().hide();
         }
     });

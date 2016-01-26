@@ -3,6 +3,8 @@
     "version": "0.1",
     "description": "inject javascript to any web site",
     "permissions": [
+        "webRequest",
+        "webRequestBlocking",
         "storage",
         "tabs",
         "http://*/",
