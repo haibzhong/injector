@@ -1,0 +1,76 @@
+html, body {
+    height: 100%;
+}
+
+body, ul, li {
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar {
+    float: left;
+    width: 15%;
+    height: 100%;
+    border-right: 1px solid #ccc;
+    background: #EEF1F0;
+    box-sizing: border-box;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 20px 0;
+}
+
+.sidebar ul li{
+    display: block;
+    line-height: 50px;
+    border-bottom: 1px solid #ccc;
+    padding-left: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.sidebar ul li:first-child{
+    border-top: 1px solid #ccc;
+}
+.sidebar ul li.current{
+    margin-right: -1px;
+    border-right: 1px solid #fff;
+    cursor: default;
+    background: #fff;
+}
+.disabled {
+    color: #ccc;
+}
+
+.content {
+    width: 85%;
+    float: left;
+    box-sizing: border-box;
+    padding: 20px 10px 0 20px;
+    height: 100%;
+    overflow: auto;
+}
+
+table.rules {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: monaco;
+}
+
+table.rules th, table.rules td{
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.red {
+    color: red;
+}
+
+tr:hover {
+    background-color: #efefef;
+}
+
