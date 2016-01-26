@@ -35,6 +35,7 @@ function saveChanges() {
                 method: "updateRules"
             });
         });
+        window.close();
     });
 }
 
@@ -146,6 +147,11 @@ function initPage() {
             });
             codeEl[0].editor = editor;
         });
+
+        $('button[name=manage]').click(function() {
+            var newURL = "manage.html";
+            chrome.tabs.create({ url: newURL });
+        });
     });
 
     $('#rules').delegate('button[name=save]', 'click', saveChanges);
@@ -177,10 +183,6 @@ function convertUrlToRegexpString(url) {
     var regStr = url.replace(/([^0-9a-zA-Z])/g, '\\$1');
     return regStr;
 }
-
-$(window).blur(function(win) {
-    win.close();
-});
 
 function prettyprint(code) {
     return code;
