@@ -45,13 +45,9 @@ function deleteRule() {
     chrome.storage.local.get(['rules'], function(data) {
         var rules = data.rules || {};
         var lastPattern = $el.find('[name=pattern]').attr('data-lastPattern');
-        delete rules[lastPattern];
-        chrome.storage.local.set({
-            'rules': rules
-        }, function() {
-            chrome.runtime.sendMessage({
-                method: "updateRules"
-            });
+        chrome.runtime.sendMessage({
+            method: "removeRule",
+            pattern: lastPattern
         });
         $el.find('div.code')[0].editor = null;
         $el.remove();
@@ -150,7 +146,9 @@ function initPage() {
 
         $('button[name=manage]').click(function() {
             var newURL = "manage.html";
-            chrome.tabs.create({ url: newURL });
+            chrome.tabs.create({
+                url: newURL
+            });
         });
     });
 

@@ -8,6 +8,16 @@ function updateRules() {
     });
 }
 
+function removeRule(pattern) {
+    if (delete rules[pattern]) {
+        chrome.storage.local.set({
+            'rules': rules
+        });
+        return true;
+    }
+    return false;
+}
+
 updateRules();
 
 function getRules(url, runIn, runAt) {
@@ -150,7 +160,8 @@ var runInBackground = (function() {
             }
         });
 
-        var root = {}, ret = root;
+        var root = {},
+            ret = root;
         for (var i = 0, nlen = name.length; i < nlen - 1; i++) {
             var key = name[i];
             if (key) {
@@ -169,5 +180,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         sendResponse(getRules(request.url, request.runIn, request.runAt));
     } else if (request.method === "updateRules") {
         updateRules();
+    } else if (request.method === "removeRule") {
+        sendResponse(removeRule(request.pattern));
     }
 });
