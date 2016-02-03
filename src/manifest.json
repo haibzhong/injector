@@ -1,0 +1,22 @@
+{
+    "name": "injector",
+    "version": "0.0.1",
+    "description": "inject javascript to any web site",
+    "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "storage",
+        "tabs",
+        "http://*/",
+        "https://*/"
+    ],
+    "browser_action": {
+        "default_title": "Injector",
+        "default_icon": "images/icon.png",
+        "default_popup": "html/popup.html"
+    },
+    "manifest_version": 2,
+    "background": {
+        "scripts": ["js/background.js"]
+    }
+}
