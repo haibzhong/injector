@@ -14,6 +14,7 @@
     "babel-preset-react": "^6.3.13",
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
+    "browserify-shim": "^3.8.12",
     "grunt": "^0.4.5",
     "grunt-browserify": "^4.0.1",
     "grunt-contrib-clean": "^0.7.0",
@@ -28,5 +29,22 @@
   "engines": {
     "node": ">= 5.2.0"
   },
-  "export-symbol": "injector.exports"
+  "export-symbol": "injector.exports",
+  "browser": {
+    "semantic-ui": "./src/js/lib/semantic.min.js",
+    "jquery": "./node_modules/jquery/dist/jquery.js"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "jquery": "jQuery",
+    "semantic-ui": {
+      "depends": [
+        "jquery:jQuery"
+      ]
+    }
+  }
 }
