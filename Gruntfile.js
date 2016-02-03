@@ -41,7 +41,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: 'src/',
-                    src: ['**', '!js/**', '!**/*.md'],
+                    src: ['**', '!js/**', '!css/**', '!**/*.md'],
                     dest: 'build/unpacked-dev/'
                 }]
             },
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: 'build/unpacked-dev/',
-                    src: ['**', '!js/*.js', '!js/*.jsx'],
+                    src: ['**', '!js/*.js', '!css/**', '!js/*.jsx'],
                     dest: 'build/unpacked-prod/'
                 }]
             },
@@ -73,6 +73,11 @@ module.exports = function(grunt) {
                         transform: [
                             ['babelify', {
                                 presets: ['es2015', 'react']
+                            }],
+                            ['sassify', {
+                                'auto-inject': true, // Inject css directly in the code
+                                base64Encode: false, // Use base64 to inject css
+                                sourceMap: true // Add source map to the code
                             }]
                         ]
                     }

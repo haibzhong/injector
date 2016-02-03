@@ -1,3 +1,5 @@
+import '../css/manage.scss';
+
 /* globals chrome: true*/
 chrome.runtime.sendMessage({
     method: "getRules"
