@@ -29,22 +29,5 @@
   "engines": {
     "node": ">= 5.2.0"
   },
-  "export-symbol": "injector.exports",
-  "browser": {
-    "semantic-ui": "./src/js/lib/semantic.min.js",
-    "jquery": "./node_modules/jquery/dist/jquery.js"
-  },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
-  "browserify-shim": {
-    "jquery": "jQuery",
-    "semantic-ui": {
-      "depends": [
-        "jquery:jQuery"
-      ]
-    }
-  }
+  "export-symbol": "injector.exports"
 }
