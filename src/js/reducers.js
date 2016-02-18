@@ -17,9 +17,9 @@ function rules(rules = [], action) {
         case UPDATE_RULE:
             return _.map(rules, (rule) => {
                 if (rule.id === action.rule.id) {
-                    return action.rule
+                    return Object.assign({}, rule, action.rule)
                 } else {
-                    return rule;
+                    return rule
                 }
             })
         default:

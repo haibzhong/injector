@@ -1,40 +1,24 @@
-import '../css/manage.scss';
+import '../css/manage.scss'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import injectorReducer from './reducers'
+import Storage from './Storage'
+import Manage from './components/Manage.jsx'
 
-/* globals chrome: true*/
-chrome.runtime.sendMessage({
-    method: "getRules"
-}, function(rules) {
-    var html = [];
-    for (var pattern in rules) {
-        if (rules.hasOwnProperty(pattern)) {
-            var rule = rules[pattern];
-            html.push('<tr data-pattern="' +  pattern + '"><td>' +
-                pattern + '</td><td>' +
-                (rule.runIn || '') + '</td><td>' +
-                (rule.runAt || '')  + '</td><td class="' + (rule.code ? '' : 'red') + '"><pre class="prettyprint linenums">' +
-                rule.code + '</pre></td><td><button class="remove">remove</button></td></tr>');
-        }
-    }
+const storage = new Storage();
+const persistStore = store => next => action => {
+    storage.setStore(store);
+    let result = next(action)
+    return result
+}
 
-    html.sort(function(item) {
-        return item.pattern;
-    });
+let createStoreWithMiddleware = applyMiddleware(persistStore)(createStore);
+let store = createStoreWithMiddleware(injectorReducer)
 
-    $('table.rules tbody').append(html.join(''));
-
-    PR.prettyPrint();
-});
-
-$('table.rules').delegate('button.remove', 'click', function() {
-    var $row = $(this).parents('tr');
-    chrome.runtime.sendMessage({
-        method: 'removeRule',
-        pattern: $row.attr('data-pattern')
-    }, function(success) {
-        if (success) {
-            $row.hide('slow', function() {
-                $row.remove();
-            });
-        }
-    });
-});
+ReactDOM.render(
+    <Provider store={ store }>
+        <Manage />
+    </Provider>, document.getElementById('manage')
+);

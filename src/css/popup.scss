@@ -3,6 +3,21 @@ body {
     padding: 0;
 }
 #popup {
-    width: 500px;
-    height: 600px;
+    width: 180px;
+    ul {
+        list-type: none;
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+        li {
+            padding: 8px 12px;
+            height: 16px;
+            +li {
+                border-top: 1px solid #ECECEC;
+            }
+            &:hover {
+                background-color: #EEE;
+            }
+        }
+    }
 }
